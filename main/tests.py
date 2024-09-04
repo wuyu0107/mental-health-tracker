@@ -22,6 +22,5 @@ class mainTest(TestCase):
           time = now,
           feelings = "I'm happy, even though my clothes are soaked from the rain :(",
           mood_intensity = 8,
-          sadness_level = 2
         )
         self.assertTrue(mood.is_mood_strong)
