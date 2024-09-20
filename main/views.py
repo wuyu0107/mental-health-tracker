@@ -22,7 +22,7 @@ def show_main(request):
         'name': request.user.username,
         'class': 'PBP KKI',
         'mood_entries': mood_entries,
-        'last_login': request.COOKIES['last_login'],
+        'last_login': request.COOKIES.get('last_login', 'Never'),
     }
 
     return render(request, "main.html", context)
@@ -67,6 +67,7 @@ def register(request):
     context = {'form':form}
     return render(request, 'register.html', context)
 
+
 def login_user(request):
    if request.method == 'POST':
       form = AuthenticationForm(data=request.POST)
@@ -88,3 +89,6 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def main_view(request):
+    return render(request, 'main.html')
